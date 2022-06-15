@@ -12,7 +12,7 @@ categories:
 ### 网站
 
 - https://macwk.com/
-
+- https://github.com/jaywcjlove/awesome-mac/
 
 ### MAC App
 
@@ -24,6 +24,7 @@ categories:
 - [百度网盘](https://pan.baidu.com/download#pan)
 - [阿里网盘](https://www.aliyundrive.com/download)
 - [Stats (网络小工具)](https://github.com/exelban/stats)
+- [eul (网络小工具)](https://github.com/gao-sun/eul)
 - [Docker](https://www.docker.com/get-started/)
 - [XMind](https://www.xmind.cn/download/)
 - Typora
