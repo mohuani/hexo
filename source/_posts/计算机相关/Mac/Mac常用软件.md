@@ -18,7 +18,7 @@ categories:
 
 - [OBS](https://github.com/obsproject/obs-studio/releases/)
 - [达芬奇](http://www.blackmagicdesign.com/cn/products/davinciresolve)
-- 超级右键
+- [右键助手](https://apps.apple.com/cn/app/id1551462255)
 - [draw.io](https://github.com/jgraph/drawio-desktop/releases/)
 - [WPS](https://platform.wps.cn/)
 - [百度网盘](https://pan.baidu.com/download#pan)
