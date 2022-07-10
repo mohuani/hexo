@@ -12,18 +12,19 @@ categories:
 ### 网站
 
 - https://macwk.com/
-
+- https://github.com/jaywcjlove/awesome-mac/
 
 ### MAC App
 
 - [OBS](https://github.com/obsproject/obs-studio/releases/)
 - [达芬奇](http://www.blackmagicdesign.com/cn/products/davinciresolve)
-- 超级右键
+- [右键助手](https://www.baidu.com/link?url=KzjTZPcHUgROoZ68p5B1SCMU0gtKG1_p_KvSXiWrFPYnq_xdsfqklRk3xFpMPtOGW6H3enrQQIVaE61UhrBlga&wd=&eqid=93c6a0a7001e35c20000000362b0698e)
 - [draw.io](https://github.com/jgraph/drawio-desktop/releases/)
 - [WPS](https://platform.wps.cn/)
 - [百度网盘](https://pan.baidu.com/download#pan)
 - [阿里网盘](https://www.aliyundrive.com/download)
 - [Stats (网络小工具)](https://github.com/exelban/stats)
+- [eul (网络小工具)](https://github.com/gao-sun/eul)
 - [Docker](https://www.docker.com/get-started/)
 - [XMind](https://www.xmind.cn/download/)
 - Typora
