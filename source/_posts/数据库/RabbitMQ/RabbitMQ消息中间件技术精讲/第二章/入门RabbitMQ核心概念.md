@@ -9,7 +9,7 @@ categories:
 
 ### 2-5 AMQP核心概念讲解
 
-![img.png](img.png)
+![img.png](入门RabbitMQ核心概念/img.png)
 
 ![img_1.png](img_1.png)
 
