@@ -24,6 +24,12 @@ categories:
 
 ### 2-10 生产者消费者模型构建
 
+![image](https://user-images.githubusercontent.com/21000558/178237396-679c97b8-a0dc-428b-9b00-f2e99decad6f.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178237442-c1201d2e-3dd3-40c7-8703-2484c6f49aed.png)
+
+
+
 **Procuder**
 ```java
 package com.bfxy.rabbitmq.quickstart;
@@ -118,7 +124,7 @@ public class Consumer {
 
 ### 2-12 交换机Exchanges
 
-direct Exchanges
+#### Direct Exchanges**
 ![image](https://user-images.githubusercontent.com/21000558/178230482-2908be59-891d-48e1-bb39-44128764e69f.png)
 
 ![image](https://user-images.githubusercontent.com/21000558/178231287-0080c23c-71b0-43cb-9684-3b09883bf1f7.png)
@@ -129,15 +135,303 @@ direct Exchanges
 
 ![image](https://user-images.githubusercontent.com/21000558/178231568-8ada756c-d80d-4d07-847a-19ace5927d08.png)
 
-topic Exchanges
+**Producer4DirectExchange**
+```java
+package com.bfxy.rabbitmq.api.exchange.direct;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+public class Producer4DirectExchange {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		//1 创建ConnectionFactory
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		//2 创建Connection
+		Connection connection = connectionFactory.newConnection();
+		//3 创建Channel
+		Channel channel = connection.createChannel();  
+		//4 声明
+		String exchangeName = "test_direct_exchange";
+		String routingKey = "test.direct111";
+		//5 发送
+		
+		String msg = "Hello World RabbitMQ 4  Direct Exchange Message 111 ... ";
+		channel.basicPublish(exchangeName, routingKey , null , msg.getBytes()); 		
+		
+	}
+	
+}
+
+```
+
+**Consumer4DirectExchange**
+```java
+package com.bfxy.rabbitmq.api.exchange.direct;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
+
+public class Consumer4DirectExchange {
+
+	public static void main(String[] args) throws Exception {
+		
+		
+        ConnectionFactory connectionFactory = new ConnectionFactory() ;  
+        
+        connectionFactory.setHost("192.168.11.76");
+        connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+        connectionFactory.setAutomaticRecoveryEnabled(true);
+        connectionFactory.setNetworkRecoveryInterval(3000);
+        Connection connection = connectionFactory.newConnection();
+        
+        Channel channel = connection.createChannel();  
+		//4 声明
+		String exchangeName = "test_direct_exchange";
+		String exchangeType = "direct";
+		String queueName = "test_direct_queue";
+		String routingKey = "test.direct";
+		
+		//表示声明了一个交换机
+		channel.exchangeDeclare(exchangeName, exchangeType, true, false, false, null);
+		//表示声明了一个队列
+		channel.queueDeclare(queueName, false, false, false, null);
+		//建立一个绑定关系:
+		channel.queueBind(queueName, exchangeName, routingKey);
+		
+        //durable 是否持久化消息
+        QueueingConsumer consumer = new QueueingConsumer(channel);
+        //参数：队列名称、是否自动ACK、Consumer
+        channel.basicConsume(queueName, true, consumer);  
+        //循环获取消息  
+        while(true){  
+            //获取消息，如果没有消息，这一步将会一直阻塞  
+            Delivery delivery = consumer.nextDelivery();  
+            String msg = new String(delivery.getBody());    
+            System.out.println("收到消息：" + msg);  
+        } 
+	}
+}
+
+```
+
+
+
+#### Topic Exchanges**
 
 ![image](https://user-images.githubusercontent.com/21000558/178233229-f99b8467-d16f-4396-bd60-a5783ca69d3a.png)
 
 ![image](https://user-images.githubusercontent.com/21000558/178233346-7f712292-a811-4ed2-b90a-1686a0bb6364.png)
 
 
+**Producer4TopicExchange**
+
+```java
+package com.bfxy.rabbitmq.api.exchange.topic;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+public class Producer4TopicExchange {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		//1 创建ConnectionFactory
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		//2 创建Connection
+		Connection connection = connectionFactory.newConnection();
+		//3 创建Channel
+		Channel channel = connection.createChannel();  
+		//4 声明
+		String exchangeName = "test_topic_exchange";
+		String routingKey1 = "user.save";
+		String routingKey2 = "user.update";
+		String routingKey3 = "user.delete.abc";
+		//5 发送
+		
+		String msg = "Hello World RabbitMQ 4 Topic Exchange Message ...";
+		channel.basicPublish(exchangeName, routingKey1 , null , msg.getBytes()); 
+		channel.basicPublish(exchangeName, routingKey2 , null , msg.getBytes()); 	
+		channel.basicPublish(exchangeName, routingKey3 , null , msg.getBytes()); 
+		channel.close();  
+        connection.close();  
+	}
+	
+}
+
+```
+
+**Consumer4TopicExchange**
+```java
+package com.bfxy.rabbitmq.api.exchange.topic;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
+
+public class Consumer4TopicExchange {
+
+	public static void main(String[] args) throws Exception {
+		
+		
+        ConnectionFactory connectionFactory = new ConnectionFactory() ;  
+        
+        connectionFactory.setHost("192.168.11.76");
+        connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+        connectionFactory.setAutomaticRecoveryEnabled(true);
+        connectionFactory.setNetworkRecoveryInterval(3000);
+        Connection connection = connectionFactory.newConnection();
+        
+        Channel channel = connection.createChannel();  
+		//4 声明
+		String exchangeName = "test_topic_exchange";
+		String exchangeType = "topic";
+		String queueName = "test_topic_queue";
+		//String routingKey = "user.*";
+		String routingKey = "user.*";
+		// 1 声明交换机 
+		channel.exchangeDeclare(exchangeName, exchangeType, true, false, false, null);
+		// 2 声明队列
+		channel.queueDeclare(queueName, false, false, false, null);
+		// 3 建立交换机和队列的绑定关系:
+		channel.queueBind(queueName, exchangeName, routingKey);
+		
+        //durable 是否持久化消息
+        QueueingConsumer consumer = new QueueingConsumer(channel);
+        //参数：队列名称、是否自动ACK、Consumer
+        channel.basicConsume(queueName, true, consumer);  
+        //循环获取消息  
+        while(true){  
+            //获取消息，如果没有消息，这一步将会一直阻塞  
+            Delivery delivery = consumer.nextDelivery();  
+            String msg = new String(delivery.getBody());    
+            System.out.println("收到消息：" + msg);  
+        } 
+	}
+}
 
 
+```
+
+
+****
+
+#### Fanout Exchange  
+不走routingKey,速度最快
+
+![image](https://user-images.githubusercontent.com/21000558/178236451-6fb77da4-5ca0-4cc8-a50a-f15beef8fd73.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178236837-a4c24831-b4fe-4305-a726-d1dd72d7474a.png)
+
+**Producer4FanoutExchange**
+```java
+package com.bfxy.rabbitmq.api.exchange.fanout;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+public class Producer4FanoutExchange {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		//1 创建ConnectionFactory
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		//2 创建Connection
+		Connection connection = connectionFactory.newConnection();
+		//3 创建Channel
+		Channel channel = connection.createChannel();  
+		//4 声明
+		String exchangeName = "test_fanout_exchange";
+		//5 发送
+		for(int i = 0; i < 10; i ++) {
+			String msg = "Hello World RabbitMQ 4 FANOUT Exchange Message ...";
+			channel.basicPublish(exchangeName, "", null , msg.getBytes()); 			
+		}
+		channel.close();  
+        connection.close();  
+	}
+	
+}
+
+```
+
+**Consumer4FanoutExchange**
+```java
+package com.bfxy.rabbitmq.api.exchange.fanout;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
+
+public class Consumer4FanoutExchange {
+
+	public static void main(String[] args) throws Exception {
+		
+        ConnectionFactory connectionFactory = new ConnectionFactory() ;  
+        
+        connectionFactory.setHost("192.168.11.76");
+        connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+        connectionFactory.setAutomaticRecoveryEnabled(true);
+        connectionFactory.setNetworkRecoveryInterval(3000);
+        Connection connection = connectionFactory.newConnection();
+        
+        Channel channel = connection.createChannel();  
+		//4 声明
+		String exchangeName = "test_fanout_exchange";
+		String exchangeType = "fanout";
+		String queueName = "test_fanout_queue";
+		String routingKey = "";	//不设置路由键
+		channel.exchangeDeclare(exchangeName, exchangeType, true, false, false, null);
+		channel.queueDeclare(queueName, false, false, false, null);
+		channel.queueBind(queueName, exchangeName, routingKey);
+		
+        //durable 是否持久化消息
+        QueueingConsumer consumer = new QueueingConsumer(channel);
+        //参数：队列名称、是否自动ACK、Consumer
+        channel.basicConsume(queueName, true, consumer); 
+        //循环获取消息  
+        while(true){  
+            //获取消息，如果没有消息，这一步将会一直阻塞  
+            Delivery delivery = consumer.nextDelivery();  
+            String msg = new String(delivery.getBody());    
+            System.out.println("收到消息：" + msg);  
+        } 
+	}
+}
+
+```
 
 
 
