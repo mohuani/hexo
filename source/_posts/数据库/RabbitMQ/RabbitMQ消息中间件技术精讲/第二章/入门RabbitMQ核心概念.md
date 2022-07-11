@@ -434,6 +434,21 @@ public class Consumer4FanoutExchange {
 ```
 
 
+#### 2-15 绑定、队列、消息、虚拟主机详解
+
+![image](https://user-images.githubusercontent.com/21000558/178237800-84476f71-cd24-4c19-b9aa-df18d6b04cbd.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178237946-cbaff737-2743-4523-9e30-1ccd70432457.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178238048-565137d5-f71d-4f10-a6ae-94da94d215de.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178238363-3aabee6a-faba-405e-84f5-26a582f06ce4.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178239248-03f8e6e4-5671-4682-b03e-775d9db5bd82.png)
+
+
+
+
 
 
 
