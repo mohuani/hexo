@@ -38,16 +38,27 @@ categories:
 ![image](https://user-images.githubusercontent.com/21000558/178250482-12780f08-ab39-43e8-801a-7a0c7aaa7d26.png)
 
 
-
 ### 3-6 Return返回消息详解
+![image](https://user-images.githubusercontent.com/21000558/178251148-86d4c4d2-5edb-4152-bd43-2384296b7e71.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178251882-7e841ccf-5bfa-4054-a985-a94863736006.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178252067-120bd2bd-1cf5-4eed-81d6-54c0b250826d.png)
+
 
 ### 3-7 自定义消费者使用 
 
+![image](https://user-images.githubusercontent.com/21000558/178252192-9fce26c8-c970-425e-b3d7-001b3c957889.png)
+
+
 ### 3-8 消费端的限流策略-1 
+
 
 ### 3-9 消费端的限流策略-2 
 
+
 ### 3-10 消费端ACK与重回队列机制 
+
 
 ### 3-11 TTL消息详解 
 
