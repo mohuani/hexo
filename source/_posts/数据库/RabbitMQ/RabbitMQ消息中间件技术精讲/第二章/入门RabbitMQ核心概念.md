@@ -434,7 +434,7 @@ public class Consumer4FanoutExchange {
 ```
 
 
-#### 2-15 绑定、队列、消息、虚拟主机详解
+### 2-15 绑定、队列、消息、虚拟主机详解
 
 ![image](https://user-images.githubusercontent.com/21000558/178237800-84476f71-cd24-4c19-b9aa-df18d6b04cbd.png)
 
