@@ -1,5 +1,5 @@
 ---
-title: "入门RabbitMQ核心概念"
+title: "第2章-入门RabbitMQ核心概念"
 date: 2022-07-10 11:36:39
 draft: true
 tags: [数据库, RabbitMQ]
