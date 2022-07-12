@@ -51,10 +51,134 @@ categories:
 ![image](https://user-images.githubusercontent.com/21000558/178252192-9fce26c8-c970-425e-b3d7-001b3c957889.png)
 
 
-### 3-8 消费端的限流策略-1 
+### 3-8 消费端的限流策略
+
+![image](https://user-images.githubusercontent.com/21000558/178393395-187e00c3-83ac-46b9-8a7b-c7a67b478749.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178393677-67724f12-b8a0-4707-a8e1-ff1b084a5ea4.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178393636-7811fd92-6b3d-47e7-be10-84d31200e162.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178393737-d14e465b-8cc3-4759-b8d3-ceb57cc9c8d7.png)
+
+**Producer**
+```java
+package com.bfxy.rabbitmq.api.limit;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+public class Producer {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		Connection connection = connectionFactory.newConnection();
+		Channel channel = connection.createChannel();
+		
+		String exchange = "test_qos_exchange";
+		String routingKey = "qos.save";
+		
+		String msg = "Hello RabbitMQ QOS Message";
+		
+		for(int i =0; i<5; i ++){
+			channel.basicPublish(exchange, routingKey, true, null, msg.getBytes());
+		}
+		
+	}
+}
+
+```
+
+**Consumer**
+```java
+package com.bfxy.rabbitmq.api.limit;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
+
+public class Consumer {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		Connection connection = connectionFactory.newConnection();
+		Channel channel = connection.createChannel();
+		
+		
+		String exchangeName = "test_qos_exchange";
+		String queueName = "test_qos_queue";
+		String routingKey = "qos.#";
+		
+		channel.exchangeDeclare(exchangeName, "topic", true, false, null);
+		channel.queueDeclare(queueName, true, false, false, null);
+		channel.queueBind(queueName, exchangeName, routingKey);
+		
+		//1 限流方式  第一件事就是 autoAck设置为 false
+		
+		channel.basicQos(0, 1, false);
+		
+		channel.basicConsume(queueName, false, new MyConsumer(channel));
+		
+		
+	}
+}
+
+```
 
 
-### 3-9 消费端的限流策略-2 
+**MyConsumer**
+```java
+package com.bfxy.rabbitmq.api.limit;
+
+import java.io.IOException;
+
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
+
+public class MyConsumer extends DefaultConsumer {
+
+
+	private Channel channel ;
+	
+	public MyConsumer(Channel channel) {
+		super(channel);
+		this.channel = channel;
+	}
+
+	@Override
+	public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+		System.err.println("-----------consume message----------");
+		System.err.println("consumerTag: " + consumerTag);
+		System.err.println("envelope: " + envelope);
+		System.err.println("properties: " + properties);
+		System.err.println("body: " + new String(body));
+		
+		channel.basicAck(envelope.getDeliveryTag(), false);
+		
+	}
+
+
+}
+
+```
 
 
 ### 3-10 消费端ACK与重回队列机制 
