@@ -183,12 +183,159 @@ public class MyConsumer extends DefaultConsumer {
 
 ### 3-10 消费端ACK与重回队列机制 
 
+![image](https://user-images.githubusercontent.com/21000558/178394598-02b3d5a7-b1c9-44f8-b8ab-4f70e246a65e.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178394721-0a9e9fd6-a9c8-4ac2-8e30-e578881a839f.png)
+
 
 ### 3-11 TTL消息详解 
 
-### 3-12 死信队列详解-1
+![image](https://user-images.githubusercontent.com/21000558/178395914-5f68477f-3472-422b-afeb-3b432cea4d49.png)
 
-### 3-13 死信队列详解-2 
+
+### 3-12 死信队列详解
+
+![image](https://user-images.githubusercontent.com/21000558/178396651-83581010-ccc2-4deb-b2d3-daf0b83a346f.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178396746-1ed6c534-934a-4ec2-a790-b0c06b45b772.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178396809-c87bc853-00fe-40cf-aa3f-0a2cc82db09a.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178397098-5a9554ea-85f4-47fc-a18f-98b52ed6a649.png)
+
+![image](https://user-images.githubusercontent.com/21000558/178397055-acf06906-bda8-480c-8bba-46972d23d29c.png)
+
+
+**Producer**
+```java
+package com.bfxy.rabbitmq.api.dlx;
+
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+public class Producer {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		Connection connection = connectionFactory.newConnection();
+		Channel channel = connection.createChannel();
+		
+		String exchange = "test_dlx_exchange";
+		String routingKey = "dlx.save";
+		
+		String msg = "Hello RabbitMQ DLX Message";
+		
+		for(int i =0; i<1; i ++){
+			
+			AMQP.BasicProperties properties = new AMQP.BasicProperties.Builder()
+					.deliveryMode(2)
+					.contentEncoding("UTF-8")
+					.expiration("10000")
+					.build();
+			channel.basicPublish(exchange, routingKey, true, properties, msg.getBytes());
+		}
+		
+	}
+}
+
+```
+
+**Consumer**
+```java
+package com.bfxy.rabbitmq.api.dlx;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
+
+public class Consumer {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setPort(5672);
+		connectionFactory.setVirtualHost("/");
+		
+		Connection connection = connectionFactory.newConnection();
+		Channel channel = connection.createChannel();
+		
+		// 这就是一个普通的交换机 和 队列 以及路由
+		String exchangeName = "test_dlx_exchange";
+		String routingKey = "dlx.#";
+		String queueName = "test_dlx_queue";
+		
+		channel.exchangeDeclare(exchangeName, "topic", true, false, null);
+		
+		Map<String, Object> agruments = new HashMap<String, Object>();
+		agruments.put("x-dead-letter-exchange", "dlx.exchange");
+		//这个agruments属性，要设置到声明队列上
+		channel.queueDeclare(queueName, true, false, false, agruments);
+		channel.queueBind(queueName, exchangeName, routingKey);
+		
+		//要进行死信队列的声明:
+		channel.exchangeDeclare("dlx.exchange", "topic", true, false, null);
+		channel.queueDeclare("dlx.queue", true, false, false, null);
+		channel.queueBind("dlx.queue", "dlx.exchange", "#");
+		
+		channel.basicConsume(queueName, true, new MyConsumer(channel));
+		
+		
+	}
+}
+
+```
+
+**MyConsumer**
+```java
+package com.bfxy.rabbitmq.api.dlx;
+
+import java.io.IOException;
+
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
+
+public class MyConsumer extends DefaultConsumer {
+
+
+	public MyConsumer(Channel channel) {
+		super(channel);
+	}
+
+	@Override
+	public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+		System.err.println("-----------consume message----------");
+		System.err.println("consumerTag: " + consumerTag);
+		System.err.println("envelope: " + envelope);
+		System.err.println("properties: " + properties);
+		System.err.println("body: " + new String(body));
+	}
+
+
+}
+
+```
+
+
+
+
 
 
 
