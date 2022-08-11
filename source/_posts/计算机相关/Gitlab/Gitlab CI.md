@@ -10,4 +10,3 @@ categories:
 > Gitlab 新项目需要配置一下相关的CI，简单了解一下 Gitlab CI相关的知识
 
 官方文档：[https://docs.gitlab.cn/jh/ci/yaml/index.html](https://docs.gitlab.cn/jh/ci/yaml/gitlab_ci_yaml.html)
-test
