@@ -10,6 +10,7 @@ categories:
 Etcd客户端
 - [etcdmanager](https://github.com/gtamas/etcdmanager)
 - [etcdkeeper](https://github.com/evildecay/etcdkeeper)
+- [etcdWp](https://github.com/workpieces/etcdWp)
 
 
 
