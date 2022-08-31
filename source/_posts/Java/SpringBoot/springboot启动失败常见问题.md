@@ -1,4 +1,3 @@
-
 ---
 title: "springboot启动失败常见问题"
 date: 2016-06-17 21:22:30
@@ -40,3 +39,16 @@ spring:
     password: root
     
 ```
+
+
+
+编译报错，忘记是什么报错了，解决方案先放这，后面遇到再补
+
+```
+-Djps.track.ap.dependencies=false
+```
+
+![image](https://user-images.githubusercontent.com/21000558/187575076-7a1e8873-c28c-4aed-855a-0a635a787af6.png)
+
+
+
