@@ -1,10 +1,10 @@
 ---
-title: PHPstrom配置
+title: PhpStorm配置
 date: 2017-12-04 21:22:30
 draft: true
-tags: [PHP, PHPstrom]
+tags: [PHP, PhpStorm]
 categories:
-- [PHP, PHPstrom]
+- [PHP, PhpStorm]
 ---
 
 ### CodeStyle配置
