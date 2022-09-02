@@ -50,3 +50,6 @@ categories:
 - [Rainbow Brackets](https://plugins.jetbrains.com/plugin/10080-rainbow-brackets)
 - [Git Commit Template](https://blog.csdn.net/noaman_wgs/article/details/103429171)
 - [.ignore](https://plugins.jetbrains.com/plugin/7495--ignore)
+- [kubernetes](https://plugins.jetbrains.com/plugin/10485-kubernetes)
+  - 进行配置，编写yaml文的时候就会有提示了  ![image](https://user-images.githubusercontent.com/21000558/188113620-17005c07-038c-48f1-9a2a-783086595db8.png)
+
