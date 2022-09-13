@@ -17,3 +17,4 @@ categories:
 - [.ignore](https://plugins.jetbrains.com/plugin/7495--ignore)
 - [TestMe](https://plugins.jetbrains.com/plugin/9471-testme)
 - [Squaretest](https://plugins.jetbrains.com/plugin/10405-squaretest)
+- [sequencediagram](https://plugins.jetbrains.com/plugin/8286-sequencediagram)
