@@ -18,3 +18,4 @@ categories:
 - [TestMe](https://plugins.jetbrains.com/plugin/9471-testme)
 - [Squaretest](https://plugins.jetbrains.com/plugin/10405-squaretest)
 - [sequencediagram](https://plugins.jetbrains.com/plugin/8286-sequencediagram)
+- [String Manipulation](https://plugins.jetbrains.com/plugin/2162-string-manipulation)
