@@ -16,6 +16,6 @@ categories:
 - [Git Commit Template](https://blog.csdn.net/noaman_wgs/article/details/103429171)
 - [.ignore](https://plugins.jetbrains.com/plugin/7495--ignore)
 - [TestMe](https://plugins.jetbrains.com/plugin/9471-testme)
-- [Squaretest](https://plugins.jetbrains.com/plugin/10405-squaretest)
+- [Squaretest-收费](https://plugins.jetbrains.com/plugin/10405-squaretest)
 - [sequencediagram](https://plugins.jetbrains.com/plugin/8286-sequencediagram)
 - [String Manipulation](https://plugins.jetbrains.com/plugin/2162-string-manipulation)
