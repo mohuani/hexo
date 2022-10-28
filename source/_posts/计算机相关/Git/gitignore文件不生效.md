@@ -40,12 +40,3 @@ git commit -m 'delete .idea'
 git push origin master
 ```
 
-
-```bash
-git rm -r --cached .
-git add .
-git commit -m "remove .idea files"
-git push origin master
-```
-![20200405013811329](../images/20200405013811329.png)
-
