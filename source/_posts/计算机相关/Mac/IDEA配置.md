@@ -29,3 +29,4 @@ categories:
     - 进行配置，编写yaml文的时候就会有提示了  ![image](https://user-images.githubusercontent.com/21000558/188113620-17005c07-038c-48f1-9a2a-783086595db8.png)
 - [Diagrams](https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration)
 - [Excalidraw](https://plugins.jetbrains.com/plugin/17096-excalidraw-integration)
+- [GenerateAllSetter](https://plugins.jetbrains.com/plugin/9360-generateallsetter)
