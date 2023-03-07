@@ -1,6 +1,6 @@
 ---
 title: IDEA配置
-date: 2022-08-31 21:22:30
+date: 2022-08-31 21:22:31
 draft: true
 tags: [Java, IDEA]
 categories:
