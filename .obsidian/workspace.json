@@ -1,0 +1,180 @@
+{
+  "main": {
+    "id": "7548f6c145fbcdc7",
+    "type": "split",
+    "children": [
+      {
+        "id": "9557c99da834573e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cecbef364f077cf0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/计算机相关/编程规范/单元测试.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "638ba5f87762c1be",
+    "type": "split",
+    "children": [
+      {
+        "id": "ad77c87bb3bd4de5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5cf8c1f3c5258d27",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5220aa6609c995bd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "81e102594b33ca81",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6a0e09d6e13c1c78",
+    "type": "split",
+    "children": [
+      {
+        "id": "eebd8d78d4c3047b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "26b2ef4ac8bed516",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/计算机相关/编程规范/单元测试.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f28d90bf7898f207",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "source/_posts/计算机相关/编程规范/单元测试.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "30eed53aa6bdada2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a9af38acdb990ce3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/计算机相关/编程规范/单元测试.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian-weread-plugin:Weread": false
+    }
+  },
+  "active": "cecbef364f077cf0",
+  "lastOpenFiles": [
+    "source/_posts/读书笔记/郑爽的书.md",
+    "source/_posts/读书笔记/奥黛丽·赫本传.md",
+    "source/_posts/读书笔记/阿里传：这是阿里巴巴的世界.md",
+    "source/_posts/测试/Apache ab测试.md",
+    "source/_posts/数据库/Elasticsearch/ElasticStack2.md",
+    "source/_posts/读书笔记/做最好的自己：苹果CEO库克传.md",
+    "source/_posts/读书笔记/一胜九败.md",
+    "source/_posts/读书笔记/互联网+金融（腾云电子刊·第二期）.md",
+    "source/_posts/读书笔记/微信思维.md",
+    "source/_posts/读书笔记/解忧杂货店.md",
+    "source/_posts/读书笔记/人工智能-916114.md",
+    "source/_posts/读书笔记/扎克伯格：做天下最酷的生意.md",
+    "source/_posts/读书笔记/天才在左 疯子在右.md",
+    "source/_posts/读书笔记/追风筝的人.md",
+    "source/_posts/读书笔记/半小时漫画中国史（全新修订版）.md",
+    "source/_posts/读书笔记/奇点临近.md",
+    "source/_posts/读书笔记/人工智能-856554.md",
+    "source/_posts/读书笔记/茶花女.md",
+    "source/_posts/读书笔记/富爸爸穷爸爸.md",
+    "source/_posts/读书笔记/蚂蚁金服：科技金融独角兽的崛起.md",
+    "source/_posts/读书笔记/股权战争.md",
+    "source/_posts/读书笔记/影响力（经典版）.md",
+    "source/_posts/读书笔记/从0到1：开启商业与未来的秘密.md",
+    "source/_posts/读书笔记/区块链：定义未来金融与经济新格局.md",
+    "source/_posts/读书笔记/展望：区块链+.md",
+    "source/_posts/读书笔记/穷查理宝典：查理·芒格智慧箴言录（全新增订本）.md",
+    "source/_posts/读书笔记"
+  ]
+}

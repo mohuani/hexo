@@ -1,17 +1,20 @@
 ---
-title: "ElasticStack2"
+title: ElasticStack2
 date: 2021-10-05 14:36:39
 draft: true
-tags: [数据库, ElasticStack]
+tags:
+  - 数据库
+  - ElasticStack
 categories:
-- [数据库, ElasticStack]
+  - 数据库
+  - ElasticStack
 ---
 
 
 #### 2-6 -document_api
 
 **创建**
-![image](https://user-images.githubusercontent.com/21000558/135993724-269aa894-4916-478f-95c6-cd6751797d36.png)
+![image](%% %% https://user-images.githubusercontent.com/21000558/135993724-269aa894-4916-478f-95c6-cd6751797d36.png %%) %%
 
 ![image](https://user-images.githubusercontent.com/21000558/135993797-58a9ad38-fc92-4e8a-a4bd-3a050dc6279e.png)
 
