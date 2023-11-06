@@ -952,10 +952,9 @@ about:
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
-    - { class: "iconfont icon-github-fill", link: "https://github.com", tip: "GitHub" }
-    - { class: "iconfont icon-douban-fill", link: "https://douban.com", tip: "豆瓣" }
-    - { class: "iconfont icon-wechat-fill", qrcode: "/img/favicon.png" }
-
+    - { class: "iconfont icon-github-fill", link: "https://github.com/mohuani", tip: "GitHub" }
+    - { class: "iconfont bilibili", link: "https://space.bilibili.com/267492075", tip: "BiliBili" }
+    - { class: "iconfont icon-wechat-fill", qrcode: "https://github.com/mohuani/hexo/assets/21000558/82f7f150-b54b-4eb4-9ef5-273e026c7358g", tip: "WeChat" }
 
 #---------------------------
 # 自定义页
