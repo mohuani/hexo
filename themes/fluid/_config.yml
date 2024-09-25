@@ -360,7 +360,6 @@ navbar:
         { key: 'chatuml', link: 'https://chatuml.freeflarum.com/' },
       ]
     }
-    }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
