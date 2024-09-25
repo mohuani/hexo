@@ -350,6 +350,17 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - {
+      key: 'links',
+      icon: 'iconfont icon-link-fill',
+      submenu: [
+        { key: 'hexo', link: 'https://hexo.mohuani.top/' },
+        { key: 'jb', link: 'https://jb.mohuani.top/' },
+        { key: 'tldraw', link: 'https://tldraw.mohuani.top/' },
+        { key: 'chatuml', link: 'https://chatuml.freeflarum.com/' },
+      ]
+    }
+    }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
