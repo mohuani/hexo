@@ -354,11 +354,12 @@ navbar:
       key: 'links',
       icon: 'iconfont icon-link-fill',
       submenu: [
-        { key: 'hexo', link: 'https://hexo.mohuani.top/' },
-        { key: 'jb', link: 'https://jb.mohuani.top/' },
-        { key: 'tldraw', link: 'https://tldraw.mohuani.top/' },
-        { key: 'chatuml', link: 'https://chatuml.freeflarum.com/' },
-      ]
+        { key: 'hexo', link: 'https://hexo.mohuani.top/', name: 'hexo博客' },
+        { key: 'jb', link: 'https://jb.mohuani.top/', name: 'jetbrain激活工具' },
+        { key: 'tldraw', link: 'https://tldraw.mohuani.top/', name: 'tldraw画板' },
+        { key: 'chatuml', link: 'https://chatuml.freeflarum.com/', name: 'chatuml论坛' },
+      ],
+      name: '个人网站'
     }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
