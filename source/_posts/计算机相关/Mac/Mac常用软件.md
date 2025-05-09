@@ -48,6 +48,11 @@ categories:
 - [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG)
 - [V2rayU](https://github.com/babyaries/V2rayU)
 
+Etcd客户端
+- [etcdmanager](https://github.com/gtamas/etcdmanager)
+- [etcdkeeper](https://github.com/evildecay/etcdkeeper)
+- [etcdWp](https://github.com/workpieces/etcdWp)
+
 
 ### mac zsh 支持ll命令
 ```
