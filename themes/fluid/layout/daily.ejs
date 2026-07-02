@@ -1,0 +1,181 @@
+<%
+page.layout = "daily"
+page.title = "每日资讯"
+page.subtitle = "每天五分钟，了解技术圈新鲜事"
+page.banner_img = theme.page.banner_img
+page.banner_img_height = theme.page.banner_img_height
+page.banner_mask_alpha = theme.page.banner_mask_alpha
+%>
+
+<% var dailyData = site.data.daily || [] %>
+
+<% function formatDate(dateVal) {
+  var d;
+  if (dateVal instanceof Date) {
+    d = dateVal;
+  } else {
+    d = new Date(dateVal);
+  }
+  if (isNaN(d.getTime())) {
+    return String(dateVal);
+  }
+  var y = d.getFullYear();
+  var m = String(d.getMonth() + 1).padStart(2, '0');
+  var day = String(d.getDate()).padStart(2, '0');
+  return y + '-' + m + '-' + day;
+} %>
+
+<article class="page-content">
+  <div class="daily-container">
+    <% if (dailyData.length === 0) { %>
+      <div class="daily-empty">
+        <p>暂无资讯内容</p>
+      </div>
+    <% } else { %>
+      <% dailyData.forEach(function(day, index) { %>
+        <% var dateStr = formatDate(day.date) %>
+        <div class="daily-section" id="day-<%= dateStr %>">
+          <div class="daily-date-header">
+            <span class="daily-date"><%= dateStr %></span>
+            <span class="daily-count"><%= day.items.length %> 条资讯</span>
+          </div>
+          <ul class="daily-list">
+            <% day.items.forEach(function(item) { %>
+              <li class="daily-item">
+                <div class="daily-item-content">
+                  <% if (item.tag) { %>
+                    <span class="daily-tag"><%= item.tag %></span>
+                  <% } %>
+                  <a href="<%= item.url %>" target="_blank" rel="noopener noreferrer" class="daily-title">
+                    <%= item.title %>
+                  </a>
+                  <% if (item.source) { %>
+                    <span class="daily-source">— <%= item.source %></span>
+                  <% } %>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+</article>
+
+<style>
+.daily-container {
+  padding: 1rem 0;
+}
+
+.daily-section {
+  margin-bottom: 2.5rem;
+}
+
+.daily-date-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--daily-border-color, #eaecef);
+}
+
+.daily-date {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--daily-date-color, #2c3e50);
+}
+
+.daily-count {
+  font-size: 0.85rem;
+  color: var(--daily-count-color, #718096);
+  background: var(--daily-count-bg, #f0f4f8);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.daily-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.daily-item {
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--daily-item-border, #eaecef);
+}
+
+.daily-item:last-child {
+  border-bottom: none;
+}
+
+.daily-item-content {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  line-height: 1.6;
+}
+
+.daily-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  background: var(--daily-tag-bg, #e6f7ff);
+  color: var(--daily-tag-color, #1890ff);
+  flex-shrink: 0;
+}
+
+.daily-title {
+  color: var(--daily-title-color, #3c4858);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.daily-title:hover {
+  color: var(--daily-title-hover, #30a9de);
+  text-decoration: underline;
+}
+
+.daily-source {
+  font-size: 0.8rem;
+  color: var(--daily-source-color, #a0aec0);
+  flex-shrink: 0;
+}
+
+.daily-empty {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--daily-empty-color, #718096);
+}
+
+@media (max-width: 768px) {
+  .daily-date {
+    font-size: 1.1rem;
+  }
+
+  .daily-item-content {
+    gap: 0.4rem;
+  }
+
+  .daily-title {
+    font-size: 0.9rem;
+  }
+}
+
+html[data-user-color-scheme="dark"] {
+  --daily-border-color: #435266;
+  --daily-date-color: #c4c6c9;
+  --daily-count-color: #a7a9ad;
+  --daily-count-bg: #364151;
+  --daily-item-border: #435266;
+  --daily-tag-bg: #1e3a5f;
+  --daily-tag-color: #69b1ff;
+  --daily-title-color: #c4c6c9;
+  --daily-title-hover: #30a9de;
+  --daily-source-color: #718096;
+  --daily-empty-color: #a7a9ad;
+}
+</style>
